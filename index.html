@@ -78,6 +78,18 @@
             }
         }
 
+        function collisionDetection() {
+            for (let column = 0; column < brickColumnCount; column++) {
+                for (let row = 0; row < brickRowCount; row++) {
+
+                    let brick = bircks[column][row];
+                    if (x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brickHeight) {
+                        dy = -dy
+                    }
+                }
+            }
+        }
+
         function drawBall() {
             ctx.beginPath();
             ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -115,6 +127,7 @@
             drawBricks()
             drawBall()
             drawPaddle()
+            collisionDetection()
 
             x += dx;
             y += dy;
