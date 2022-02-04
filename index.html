@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +14,7 @@
         }
 
         canvas {
-            background: #eee;
+            background: #000;
             display: block;
             margin: 0 auto;
         }
@@ -60,7 +60,7 @@
 
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
-        document.addEventListener("mousemove", mouseMoveHandler, falses)
+        document.addEventListener("mousemove", mouseMoveHandler, false)
 
 
         function keyDownHandler(e) {
@@ -121,7 +121,7 @@
         function drawLives() {
             ctx.font = "16px Arial"
             ctx.fillStyle = "0095DD";
-            ctx.fillText("Lives: " +lives, canvas.width - 65, 20)
+            ctx.fillText("Lives: " + lives, canvas.width - 65, 20)
         }
 
         function drawBall() {
@@ -182,10 +182,18 @@
                     }
                 } else {
                     // else game over
-                    alert("GAME OVER");
-                    document.location.reload();
-                    clearInterval(interval);
-
+                    lives--;
+                    if (!lives) {
+                        alert("GAME OVER");
+                        document.location.reload();
+                        clearInterval(interval);
+                    } else {
+                        x = canvas.width / 2;
+                        y = canvas.height - 30;
+                        dx = 2;
+                        dy = -2;
+                        paddleX = (canvas.width - paddleWidth) / 2
+                    }
                 }
             }
 
