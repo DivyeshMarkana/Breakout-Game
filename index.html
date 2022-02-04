@@ -85,10 +85,15 @@
                     let brick = bricks[column][row];
                     if (brick.status == 1) {
                         if (x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brickHeight) {
-                        dy = -dy;
-                        brick.status = 0;
-                        score++;
-                    }
+                            dy = -dy;
+                            brick.status = 0;
+                            score++;
+                            if (score == brickRowCount * brickColumnCount) {
+                                alert("YOU WIN, CONGRATULATIONS!");
+                                document.location.reload();
+                                clearInterval(interval);
+                            }
+                        }
                     }
                 }
             }
@@ -100,7 +105,7 @@
             ctx.beginPath();
             ctx.font = "16px Arial";
             ctx.fillStyle = "0095DD";
-            ctx.fillText("Score: " +score, 8, 20)
+            ctx.fillText("Score: " + score, 8, 20)
         }
 
         function drawBall() {
