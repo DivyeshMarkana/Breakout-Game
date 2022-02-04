@@ -143,8 +143,10 @@
             }
             else if (y + dy > canvas.height - ballRadius) {
                 // if ball touches paddle
-                if (x > paddleX && paddleX + paddleWidth) {
-                    dy = -dy;
+                if (x > paddleX && x < paddleX + paddleWidth) {
+                    if (y = y - paddleHeight) {
+                        dy = -dy;
+                    }
                 } else {
                     // else game over
                     alert("GAME OVER");
