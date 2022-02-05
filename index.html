@@ -49,6 +49,7 @@
         let brickPadding = 8;
         let brickOffsetTop = 30;
         let brickOffsetLeft = 30;
+        let paddleMoved = false;
 
         let bricks = [];
         for (let column = 0; column < brickColumnCount; column++) {
@@ -66,8 +67,10 @@
         function keyDownHandler(e) {
             if (e.key == "Right" || e.key == "ArrowRight") {
                 rightPressed = true;
+                paddleMoved = true;
             } else if (e.key == "Left" || e.key == "ArrowLeft") {
                 leftPressed = true;
+                paddleMoved = true;
             }
         }
 
@@ -84,6 +87,7 @@
             if (relativeX > 0 && relativeX < canvas.width) {
                 paddleX = relativeX - paddleWidth / 2;
             }
+            paddleMoved = true;
         }
 
         function collisionDetection() {
@@ -92,7 +96,7 @@
 
                     let brick = bricks[column][row];
                     if (brick.status == 1) {
-                        if (x > brick.x && x < brick.x + brickWidth && y > brick.y && y < brick.y + brickHeight) {
+                        if (x > brick.x && x < brick.x + brickWidth && (y) - 10 > brick.y && (y) - 10 < brick.y + brickHeight) {
                             dy = -dy;
                             brick.status = 0;
                             score++;
@@ -166,8 +170,10 @@
             drawPaddle()
             collisionDetection()
 
-            x += dx;
-            y += dy;
+            if (paddleMoved) {
+                x += dx;
+                y += dy;
+            }
 
             // if ball touches top edge
             if ((y + dy < ballRadius)) {
