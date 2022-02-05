@@ -104,21 +104,13 @@
             }
         }
 
-        function touchMoveHandler(e) {
-            let relativeX = e.clientX - canvas.offsetLeft;
-            if (relativeX > 0 && relativeX < canvas.width) {
-                paddleX = relativeX - paddleWidth / 2;
-            }
-            paddleMoved = true;
-        }
-
         function collisionDetection() {
             for (let column = 0; column < brickColumnCount; column++) {
                 for (let row = 0; row < brickRowCount; row++) {
 
                     let brick = bricks[column][row];
                     if (brick.status == 1) {
-                        if (x > brick.x && x < brick.x + brickWidth && (y) - 10 > brick.y && (y) - 10 < brick.y + brickHeight) {
+                        if (x > brick.x && x < brick.x + brickWidth && (y) - 20 > brick.y && (y) - 20 < brick.y + brickHeight) {
                             dy = -dy;
                             brick.status = 0;
                             score++;
