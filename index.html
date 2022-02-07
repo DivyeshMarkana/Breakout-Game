@@ -39,8 +39,8 @@
         const ctx = canvas.getContext("2d");
         let x = canvas.width / 2;
         let y = canvas.height - 30;
-        let dx = 2;
-        let dy = -2;
+        let dx = 3;
+        let dy = -3;
         let ballRadius = 10;
 
         let paddleHeight = 10;
@@ -200,7 +200,7 @@
             if ((y + dy < ballRadius)) {
                 dy = -dy
             }
-            else if (y + dy > canvas.height - ballRadius - 20) {
+            else if (y + dy > canvas.height - ballRadius - 15) {
                 // if ball touches paddle
                 if (x > paddleX && x < paddleX + paddleWidth) {
                     if (y = y - paddleHeight) {
@@ -215,8 +215,8 @@
                     } else {
                         x = canvas.width / 2;
                         y = canvas.height - 30;
-                        dx = 2;
-                        dy = -2;
+                        dx = 3;
+                        dy = -3;
                         paddleX = (canvas.width - paddleWidth) / 2
                     }
                 }
