@@ -119,7 +119,7 @@
 
                     let brick = bricks[column][row];
                     if (brick.status == 1) {
-                        if (x > brick.x && x < brick.x + brickWidth && (y) - 20 > brick.y && (y) - 20 < brick.y + brickHeight) {
+                        if (x > brick.x && x < brick.x + brickWidth && ((y) - 20 > brick.y || y > brick.y) && ((y) - 20 < brick.y + brickHeight || y < brick.y + brickHeight)) {
                             brickTouchSound.play();
                             dy = -dy;
                             brick.status = 0;
