@@ -18,12 +18,20 @@
             display: block;
             margin: 0 auto;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
 
     <canvas id="myCanvas" width="800" height="600"></canvas>
+
+    <div class="hidden">
+        <audio src="button-sound.mp3" data-sound="brickTouch"></audio>
+      </div>
 
     <script>
 
@@ -51,6 +59,8 @@
         let brickOffsetLeft = 30;
 
         let play = false;
+
+        const brickTouchSound = new Audio("button-sound.mp3");
 
         let bricks = [];
         for (let column = 0; column < brickColumnCount; column++) {
@@ -110,6 +120,7 @@
                     let brick = bricks[column][row];
                     if (brick.status == 1) {
                         if (x > brick.x && x < brick.x + brickWidth && (y) - 20 > brick.y && (y) - 20 < brick.y + brickHeight) {
+                            brickTouchSound.play();
                             dy = -dy;
                             brick.status = 0;
                             score++;
