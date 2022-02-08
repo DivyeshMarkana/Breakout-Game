@@ -143,12 +143,11 @@
             ctx.fillText("Score: " + score, 8, 20)
         }
 
-        let lives = 3;
+        let lives = "❤️❤️❤️";
 
         function drawLives() {
             ctx.font = "16px Arial"
-            ctx.fillStyle = "0095DD";
-            ctx.fillText("Lives: " + lives, canvas.width - 65, 20)
+            ctx.fillText(`Lives: ${lives}`, canvas.width - 120, 20)
         }
 
         function drawBall() {
@@ -208,10 +207,12 @@
                     }
                 } else {
                     // else game over
-                    lives--;
-                    if (!lives) {
+                    lives = lives.slice(0,-2)
+                    // lives--;
+                    if (lives === "") {
                         alert("GAME OVER");
                         document.location.reload();
+                        lives = "❤️❤️❤️";
                     } else {
                         x = canvas.width / 2;
                         y = canvas.height - 30;
