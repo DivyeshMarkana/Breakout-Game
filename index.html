@@ -17,10 +17,18 @@
             background: #000;
             display: block;
             margin: 0 auto;
+            width: 80vw;
+            height: 100vh;
         }
 
         .hidden {
             display: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            canvas {
+                width: 100vw;
+            }
         }
     </style>
 </head>
@@ -73,6 +81,7 @@
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
         document.addEventListener("mousemove", mouseMoveHandler, false)
+        document.addEventListener("touchStart", mouseMoveHandler, false)
 
         window.addEventListener("keydown", function pause(e) {
             let key = e.keyCode;
