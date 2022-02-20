@@ -39,7 +39,7 @@
 
     <div class="hidden">
         <audio src="button-sound.mp3" data-sound="brickTouch"></audio>
-      </div>
+    </div>
 
     <script>
 
@@ -81,7 +81,11 @@
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
         document.addEventListener("mousemove", mouseMoveHandler, false)
-        document.addEventListener("touchStart", mouseMoveHandler, false)
+        document.addEventListener("touchmove", touchMoveHandler,{
+            capture: false,
+            once: false,
+            passive: true
+        })
 
         window.addEventListener("keydown", function pause(e) {
             let key = e.keyCode;
@@ -119,6 +123,13 @@
             let relativeX = e.clientX - canvas.offsetLeft;
             if (relativeX > 0 && relativeX < canvas.width) {
                 paddleX = relativeX - paddleWidth / 2;
+            }
+        }
+
+        function touchMoveHandler(e) {
+            let relativeX = e.clientX;
+            if (relativeX > 0 && relativeX < canvas.width) {
+                paddleX = relativeX - paddleWidth / 2
             }
         }
 
@@ -216,7 +227,7 @@
                     }
                 } else {
                     // else game over
-                    lives = lives.slice(0,-2)
+                    lives = lives.slice(0, -2)
                     // lives--;
                     if (lives === "") {
                         alert("GAME OVER");
